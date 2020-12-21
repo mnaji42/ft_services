@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: telegraf
+  labels:
+    name: telegraf
+spec:
+  selector:
+    name: telegraf
+  clusterIP: None
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: telegraf-account
+  labels:
+    app: telegraf

@@ -1,0 +1,53 @@
+configMapGenerator:
+- name: nginx-config
+  files:
+  - nginx/nginx.conf
+- name: telegraf-config
+  files:
+  - telegraf.conf=telegraf/telegraf-target.conf
+secretGenerator:
+- name: ftps-user
+  literals:
+  - username=mnaji
+  - password=123
+- name: ftps-keys
+  files:
+  - pure-ftpd.pem=ftps/pure-ftpd.pem
+- name: ssh-user
+  literals:
+  - username=mnaji
+  - password=123
+- name: ssh-host-keys
+  files:
+  - ssh_host_rsa_key=nginx/ssh-keys/ssh_host_rsa_key
+  - ssh_host_ed25519_key=nginx/ssh-keys/ssh_host_ed25519_key
+- name: tls-key
+  files:
+  - tls.key=nginx/tls-keys/tls.key
+  - tls.crt=nginx/tls-keys/tls.crt
+- name: mysql-pass
+  literals:
+  - password=123
+resources:
+- telegraf/kubernetes-dashboard.yml
+- nginx/nginx-deploy.yml
+- nginx/nginx-svc.yml
+- nginx/ingress.yml
+- ftps/ftps-deploy.yml
+- ftps/ftps-pers-vol.yml
+- ftps/ftps-svc.yml
+- telegraf/telegraf-deploy.yml
+- telegraf/telegraf-svc.yml
+- influxdb/influxdb-deploy.yml
+- influxdb/influxdb-pers-vol.yml
+- influxdb/influxdb-svc.yml
+- grafana/grafana-deploy.yml
+- grafana/grafana-svc.yml
+- mysql/mysql-deploy.yml
+- mysql/mysql-svc.yml
+- mysql/mysql-pers-vol.yml
+- wordpress/wordpress-deploy.yml
+- wordpress/wordpress-pers-vol.yml
+- wordpress/wordpress-svc.yml
+- phpmyadmin/phpmyadmin-deploy.yml
+- phpmyadmin/phpmyadmin-svc.yml
